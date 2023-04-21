@@ -1,0 +1,26 @@
+.about-container {
+    margin: 0 50px;
+    position: relative;
+    padding-top: 5%;
+    background-color: #f7f7f7;
+
+    .qualification-container {
+        .face-img{
+            border-radius: 50%;
+            width: 180px;
+            position: absolute;
+            top: -8vw;
+            left: 7%;
+            
+        }
+        h1 {
+            text-shadow: 3px 3px 5px #fff;
+        }
+        .name {
+            font-size: 3rem;
+        }
+        .qualification {
+            font-size: 2rem;
+        }
+    }
+}

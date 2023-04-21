@@ -1,0 +1,34 @@
+.navbar-container {
+    background-color: #534f4f;
+    padding: 0.5rem 1.2rem;
+
+    .navbar-right{
+        .social{
+            margin-right: 1.5rem;
+
+            .social-icon{
+                margin-right: 2rem;
+            }      
+            
+            a.linkedin-icon{
+                color: #0e76a8;
+            }
+            
+            a.whatsapp-icon{
+                color: #009624;
+            }
+
+            a.twitter-icon{
+                color: #00acee;
+            }
+
+            a.facebook-icon{
+                color: #4267B2;
+            }
+
+            a.youtube-icon{
+                color: #c4302b;
+            }             
+        }
+    }
+}
