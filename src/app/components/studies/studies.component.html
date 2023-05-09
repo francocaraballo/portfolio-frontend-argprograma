@@ -1,0 +1,14 @@
+<div class="work-container row">
+    <div class="d-flex flex-wrap">
+        <img [src]=studiesData.urlImage class="img-work img-fluid" alt="Image work" width="200px">
+        <div class="text-work d-flex flex-column justify-content-center ">
+            <h5>{{ studiesData.title }}</h5>
+            <p class="work-description">{{ studiesData.institution }}</p>
+        </div>
+        <div class="edit-container d-flex justify-content-center">
+            <app-edit [workDataIn]="studiesData"></app-edit>
+            <app-delete (click)="deleteStudy(studiesData)"></app-delete>
+        </div>
+    </div>
+</div>
+

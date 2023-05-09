@@ -1,0 +1,10 @@
+<div class="container d-flex justify-content-between align-items-center">
+    <div class="container-bar col-9">
+        <p><ngb-progressbar [value]= "skillData.value" height="19px" [type]="skillData.type">{{ skillData.description }}</ngb-progressbar></p>
+    </div>
+    <div class="container-buttons btn-group col-1 d-flex align-items-center">
+        <!-- <app-edit [skillDataIn]="skillData"></app-edit> -->
+        <app-delete (click)="deleteSkill(skillData)"></app-delete>
+        <app-edit-skill [skillDataIn]="skillData" ></app-edit-skill>
+    </div>
+</div>

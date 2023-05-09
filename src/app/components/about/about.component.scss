@@ -7,14 +7,15 @@
     .qualification-container {
         .face-img{
             border-radius: 50%;
-            width: 180px;
+            width: 190px;
             position: absolute;
-            top: -8vw;
+            top: -5vw;
             left: 7%;
-            
+            z-index: 10;
         }
         h1 {
             text-shadow: 3px 3px 5px #fff;
+            z-index: 50;
         }
         .name {
             font-size: 3rem;

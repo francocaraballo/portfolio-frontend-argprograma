@@ -16,6 +16,15 @@ import { DeleteComponent } from './components/delete/delete.component';
 import { EditComponent } from './components/edit/edit.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StudiesComponent } from './components/studies/studies.component';
+import { StudiesDoneComponent } from './components/studies-done/studies-done.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { HardSkillsComponent } from './components/hard-skills/hard-skills.component';
+import { SoftSkillsComponent } from './components/soft-skills/soft-skills.component';
+import { HabilitiesComponent } from './components/habilities/habilities.component';
+import { SkillComponent } from './components/skill/skill.component';
+import { EditSkillComponent } from './components/edit-skill/edit-skill.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +36,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     WorksDoneComponent,
     WorkComponent,
     DeleteComponent,
-    EditComponent
+    EditComponent,
+    StudiesComponent,
+    StudiesDoneComponent,
+    LoginComponent,
+    HomeComponent,
+    HardSkillsComponent,
+    SoftSkillsComponent,
+    HabilitiesComponent,
+    SkillComponent,
+    EditSkillComponent,
   ],
   imports: [
     BrowserModule,

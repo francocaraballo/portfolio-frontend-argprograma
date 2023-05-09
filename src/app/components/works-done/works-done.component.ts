@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { WorkModel } from 'src/app/models/work.model';
 import { WorkListService } from 'src/app/services/work-list.service';
 
@@ -12,7 +13,9 @@ export class WorksDoneComponent implements OnInit {
 
   workList: WorkModel[] = [];
 
-  constructor(private workListService: WorkListService){}
+  constructor(
+    private workListService: WorkListService,
+    private modalService: NgbModal){}
 
   ngOnInit(): void {
     this.getWorkList();
@@ -24,11 +27,11 @@ export class WorksDoneComponent implements OnInit {
 
   addWork(): void{
     let newId: number = this.workList.length + 1;
-    const newWork: WorkModel = {
+    let newWork: WorkModel = {
       id: newId,
-      title: `trabajo ${newId}`,
-      urlImage: "https://res.cloudinary.com/discountclub/image/upload/6k6LzXgpzeWZVUFYIbRpAIrzmmVCLYC4zcn76Ir4.png",
-      description: "Uno de los mejores trabajos lejos"
+      title: 'Titulo del trabajo',
+      urlImage: 'https://wpdirecto.com/wp-content/uploads/2017/08/alt-de-una-imagen.png',
+      description: 'Descripcion'
     }
     this.workListService.add(newWork as WorkModel)
     .subscribe((work: WorkModel) => {
@@ -40,4 +43,9 @@ export class WorksDoneComponent implements OnInit {
     this.workListService.remove(workToRemove.id).subscribe();
     this.getWorkList();
   }
+
+  openVerticallyCentered(content: any) {
+		this.modalService.open(content, { centered: true });
+    this.addWork();
+	}
 }

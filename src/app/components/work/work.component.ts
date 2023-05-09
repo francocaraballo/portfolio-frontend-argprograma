@@ -7,7 +7,7 @@ import { WorkModel } from 'src/app/models/work.model';
   styleUrls: ['./work.component.scss']
 })
 export class WorkComponent {
-  @Input() workData: any;
+  @Input() workData!: WorkModel;
   @Output() workRemove: EventEmitter<WorkModel> = new EventEmitter();
 
   deleteWork(workToDelete: WorkModel){

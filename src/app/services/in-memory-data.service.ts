@@ -9,6 +9,7 @@ export class InMemoryDataService implements InMemoryDbService {
   constructor() { }
 
   createDb() {
+
     const works = [
       {"id": 1,
       "title": "Primer trabajo",
@@ -31,7 +32,88 @@ export class InMemoryDataService implements InMemoryDbService {
       "description": "Muy buena experiencia"
       }
     ];
-    return {works}
-    
+
+    const studies = [
+      {
+        "id": "1",
+        "urlImage" : "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/7a3ec529632909.55fc107b84b8c.png",
+        "institution" :"Secundaria Nuestra Senora de Fatima N 3050",
+        "title" :"Bachiller en Economia"
+      },
+      {
+        "id": "2",
+        "urlImage" : "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/46190b63764575.5abb892616e9e.jpg",
+        "institution" :"Facultad de Ingenieria Quimica",
+        "title" :"En curso"
+      },
+      {
+        "id": "3",
+        "urlImage" : "https://www.graphis.com/media/uploads/cache/56/f8/56f8cbc0224c3835fcbf50212e49f7e9.jpg",
+        "institution" :"Argentina Programa",
+        "title" :"Desarrolador Web Full Stack"
+      },
+      {
+        "id": "4",
+        "urlImage" : "https://files.cults3d.com/uploaders/15233766/illustration-file/1eed0015-b833-4838-b577-1785b9c96a35/1.jpg",
+        "institution" :"FreeCodeCamp.org",
+        "title" :"Conocimientos basicos en HTML y CSS"
+      }
+    ];
+
+    const hardSkills = [
+      {
+        "id": 1,
+        "value": 26,
+        "type": "danger",
+        "description": "Trabajo en Equipo"
+      },
+      {
+          "id": 2,
+          "value": 50,
+          "type": "dark",
+          "description": "Comunicacion"
+      },
+      {
+          "id": 1,
+          "value": 25,
+          "type": "primary",
+          "description": "Responsabilidad"
+      },
+      {
+          "id": 1,
+          "value": 80,
+          "type": "success",
+          "description": "Flexibilidad"
+      }
+    ];
+
+    const softSkills = [
+      {
+        "id": 1,
+        "value": 30,
+        "type": "success",
+        "description": "JavaScript"
+      },
+      {
+          "id": 2,
+          "value": 50,
+          "type": "danger",
+          "description": "HTML"
+      },
+      {
+          "id": 1,
+          "value": 25,
+          "type": "dark",
+          "description": "CSS"
+      },
+      {
+          "id": 1,
+          "value": 80,
+          "type": "info",
+          "description": "Angular"
+      }
+    ];
+
+    return {works, studies, hardSkills, softSkills};
   }
 }

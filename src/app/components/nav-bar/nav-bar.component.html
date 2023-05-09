@@ -1,4 +1,4 @@
-<nav class="navbar-container row ">
+<nav class="navbar-container row h-25 d-flex align-items-center justify-content-start ">
     <div class="navbar-left col">
         <img src="../../../assets/img/argprog-logo.png" alt="Logo Argentina Programa 4.0" width="120">
     </div>
@@ -30,7 +30,7 @@
                 </svg>
             </a>
         </div> 
-        <button *ngIf="loginShow" type="button" class="btn btn-light">Login</button>
+        <button routerLink="/login" *ngIf="loginShow" type="button" class="btn btn-light">Login</button>
         <button *ngIf="!loginShow" type="button" class="btn btn-primary">Logout</button>
       </div>
 </nav>
