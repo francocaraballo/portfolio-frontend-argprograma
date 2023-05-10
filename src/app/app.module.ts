@@ -25,6 +25,8 @@ import { SoftSkillsComponent } from './components/soft-skills/soft-skills.compon
 import { HabilitiesComponent } from './components/habilities/habilities.component';
 import { SkillComponent } from './components/skill/skill.component';
 import { EditSkillComponent } from './components/edit-skill/edit-skill.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { ProjectsComponent } from './components/projects/projects.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { EditSkillComponent } from './components/edit-skill/edit-skill.component
     HabilitiesComponent,
     SkillComponent,
     EditSkillComponent,
+    FooterComponent,
+    ProjectsComponent,
   ],
   imports: [
     BrowserModule,
