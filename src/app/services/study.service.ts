@@ -8,7 +8,7 @@ import { Observable, catchError, of, tap } from 'rxjs';
 })
 export class StudyService {
 
-  studiesURL = 'http://localhost:8080/formacion/';
+  studiesURL = 'https://backendfnc.onrender.com/formacion/';
 
   constructor(private http: HttpClient) { }
 

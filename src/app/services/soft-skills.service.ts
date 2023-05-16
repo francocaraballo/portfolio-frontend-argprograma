@@ -8,7 +8,7 @@ import { SkillModel } from '../models/skill.model';
 })
 export class SoftSkillsService {
 
-  private softSkillsURL = 'http://localhost:8080/softskill/';
+  private softSkillsURL = 'https://backendfnc.onrender.com/softskill/';
 
 
   constructor(private http: HttpClient) { }

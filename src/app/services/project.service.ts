@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ProjectService {
 
-  projectsURL = 'http://localhost:8080/proyectos/';
+  projectsURL = 'https://backendfnc.onrender.com/proyectos/';
 
   constructor(private http: HttpClient) { }
 

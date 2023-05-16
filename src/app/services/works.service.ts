@@ -8,7 +8,7 @@ import { WorkModel } from '../models/work.model';
 })
 export class WorksService {
 
-  worksURL = 'http://localhost:8080/explab/';
+  worksURL = 'https://backendfnc.onrender.com/explab/';
 
   constructor(private http: HttpClient) { }
 
