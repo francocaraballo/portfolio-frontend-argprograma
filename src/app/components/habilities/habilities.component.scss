@@ -1,8 +1,14 @@
-.container-bar {
-    margin-bottom: 50px;
-    .container-skill {
-        box-shadow: 10px 32px 30px -3px rgba(0,0,0,0.75);
-        background: #9dc06f;
-        padding: 40px;
+.container-class{
+    .title-container{
+        margin-bottom: 30px;
+        margin-top: 10px;
+    }
+    .container-bar {
+        margin-bottom: 50px;
+        .container-skill {
+            box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
+            background: #ABB2B9;
+            padding: 20px;
+        }
     }
 }

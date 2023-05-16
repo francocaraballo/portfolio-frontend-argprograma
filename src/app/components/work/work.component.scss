@@ -1,6 +1,15 @@
 .work-container {
     margin-top: 2rem;
     margin-left: 2rem;
+
+    .container-edit-delete{
+        padding: 10px;
+
+        app-delete{
+            padding-right: 8px;
+        }
+    }
+
     img.img-work {
         width: 200px;
         height: 200px;

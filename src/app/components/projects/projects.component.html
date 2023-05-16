@@ -1,32 +1,15 @@
-<div class="row d-flex justify-content-center align-items-center">
-    <div class="container-title col-12">
-        <h4 class="section-title">Proyectos realizados</h4>
-    </div>
-    <div class="column col-lg-5 col-xl-4">
-        <div class="container-project">
-            <img class="img-fluid" src="../../../assets/img/coffee-menu.JPG" alt="Menu Coffee" width="300px">
-            <div class="project-description">
-                <p class="title">Menu de Cafeteria</p>
-                <p class="description">Realizado con HTML & CSS</p>
-            </div>
+<div class="work-container row">
+    <div class="d-flex flex-wrap col-11">
+        <img [src]="projectData.imagenUrl" class="img-work img-fluid" alt="Image work" width="200px">
+        <div class="text-work d-flex flex-column justify-content-center ">
+            <h5>{{ projectData.nombreP }}</h5>
+            <p class="work-description">{{ projectData.descripcionP }}</p>
+        </div>
+        <div class="edit-container d-flex justify-content-center">
         </div>
     </div>
-    <div class="column col-lg-5 col-xl-4">
-        <div class="container-project">
-            <img class="img-fluid" src="../../../assets/img/form-access.JPG" alt="Accesibility form" width="300px">
-            <div class="project-description">
-                <p class="title">Formulario accesible</p>
-                <p class="description">Apto para lectores de pantalla</p>
-            </div>
-        </div>
-    </div>
-    <div class="column col-lg-5 col-xl-4">
-        <div class="container-project">
-            <img class="img-fluid" src="../../../assets/img/coffee-menu.JPG" alt="Cell Shop" width="300px">
-            <div class="project-description">
-                <p class="title">Tienda de celulares</p>
-                <p class="description">Realizado con Angular, es una tienda interactiva que consta de un carrito que se pueden agregar items y simlar una compra</p>
-            </div>
-        </div>
+    <div class="container-edit-delete col d-flex flex-column align-items-end justify-content-center">
+        <app-project-edit *ngIf="logged" [project]="projectData"></app-project-edit>
+        <app-delete *ngIf="logged" (click)="deleteProject(projectData)"></app-delete>
     </div>
 </div>

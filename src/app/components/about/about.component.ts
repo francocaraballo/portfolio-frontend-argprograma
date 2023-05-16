@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent {
-  faceImage: string = 'https://images.hola.com/us/images/027f-179cda03c4d8-364b39983d40-1000/square-480/lionel-messi.jpg';
-  name: string = 'Leo Messi';
+  faceImage: string = 'https://media.licdn.com/dms/image/C5603AQHJZsppUC_VPg/profile-displayphoto-shrink_800_800/0/1629836819945?e=2147483647&v=beta&t=rLq-hXIyuK02FtK_9CpI2fluGBSrfoxM_aVZl11j9vs';
+  name: string = 'Franco Caraballo';
   
 
 }

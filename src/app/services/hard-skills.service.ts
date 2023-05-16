@@ -8,41 +8,29 @@ import { SkillModel } from '../models/skill.model';
 })
 export class HardSkillsService {
 
-  private hardSkillsUrl = 'api/hardSkills';
+  private hardSkillsURL = 'http://localhost:8080/hardskill/';
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
 
   constructor(private http: HttpClient) { }
 
-  getSkills(): Observable<SkillModel[]> {
-    return this.http.get<SkillModel[]>(this.hardSkillsUrl)
-      .pipe(catchError(this.handleError<SkillModel[]>('getSkills',[]))
-      );
+  getSkillsList(): Observable<SkillModel[]> {
+    return this.http.get<SkillModel[]>(this.hardSkillsURL + 'list');
   }
 
-  add(skillAdd: SkillModel) {
-    return this.http.post<SkillModel>(this.hardSkillsUrl, skillAdd, this.httpOptions).pipe(
-      tap((newSkill: SkillModel) => console.log(newSkill.description)),
-      catchError(this.handleError<SkillModel>('addSkill'))
-    );
+  saveSkill(skill: SkillModel) {
+    return this.http.post<SkillModel>(this.hardSkillsURL + 'create', skill);
+  }
+
+  updateSkill(id: number, skill: SkillModel): Observable<any>{
+    return this.http.put<any>(this.hardSkillsURL + `update/${id}`, skill);
+
   }
 
   removeSkill(id: number): Observable<SkillModel> {
-    const url = `${this.hardSkillsUrl}/${id}`;
-
-    return this.http.delete<SkillModel>(url, this.httpOptions).pipe(
-      tap(() => console.log(`deleted hard skill id=${id}`)),
-      catchError(this.handleError<SkillModel>('deleteWork'))
-    );
+    return this.http.delete<SkillModel>(this.hardSkillsURL + `delete/${id}`);
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error); 
-      console.log(`${operation} failed: ${error.body.error}`);
-      return of(result as T);
-      };
-    }
+  skillDetail(id: number): Observable<SkillModel>{
+    return this.http.get<SkillModel>(this.hardSkillsURL + `detail/${id}`);
+  }
 }

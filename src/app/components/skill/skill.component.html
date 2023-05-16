@@ -1,10 +1,9 @@
 <div class="container d-flex justify-content-between align-items-center">
     <div class="container-bar col-9">
-        <p><ngb-progressbar [value]= "skillData.value" height="19px" [type]="skillData.type">{{ skillData.description }}</ngb-progressbar></p>
+        <p><ngb-progressbar [value]=(skillData.porcentaje) height="19px" [type]="skillData.color">{{ skillData.titulo }}</ngb-progressbar></p>
     </div>
-    <div class="container-buttons btn-group col-1 d-flex align-items-center">
-        <!-- <app-edit [skillDataIn]="skillData"></app-edit> -->
-        <app-delete (click)="deleteSkill(skillData)"></app-delete>
-        <app-edit-skill [skillDataIn]="skillData" ></app-edit-skill>
+    <div class="container-buttons btn-group col-2 d-flex align-items-center justify-content-center">
+        <app-edit-skill class="edit-container" *ngIf="logged" [skillDataIn]="skillData" ></app-edit-skill>
+        <app-delete class="delete-container" *ngIf="logged" (click)="deleteSkill(skillData)"></app-delete>
     </div>
 </div>

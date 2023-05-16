@@ -1,36 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { NuevoUsuario } from '../models/new-user';
+import { Observable } from 'rxjs';
+import { LoginUsuario } from '../models/login-usuario';
+import { JwtDto } from '../models/jwt-dto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  authURL = 'http://localhost:8080/auth/';
 
-  uri = 'http://localhost:3000/api'; // La Url que corresponda en cada caso
-  token: any;
+  constructor(private http: HttpClient) { }
 
-  constructor(
-    private http: HttpClient,
-    private router: Router) { }
-
-  login(email: string, password: string) {
-    this.http.post(this.uri + '/authenticate', {email: email, password: password})
-      .subscribe((resp: any) => {
-        // Redirecciona al usuario a su perfil
-        this.router.navigate(['home']);
-        // Guarda el token en localStorage
-        localStorage.setItem('auth_token', resp.token);
-      })
-  };
-
-  // Para cerrar la sesion se elimina el token
-  logout() {
-    localStorage.removeItem('token');
+  public nuevo(nuevoUsuario: NuevoUsuario): Observable<any> {
+    return  this.http.post<any>(this.authURL + 'nuevo', nuevoUsuario);
   }
 
-  // Un metodo para verificar si existe la sesion
-  public get logIn(): boolean {
-    return (localStorage.getItem('token') !== null);
+  public login(loginUsuario: LoginUsuario): Observable<JwtDto> {
+    return this.http.post<JwtDto>(this.authURL + 'login', loginUsuario);
   }
 }

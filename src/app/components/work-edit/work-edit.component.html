@@ -1,0 +1,33 @@
+<div class="edit-container">
+	<button type="button" class="btn mb-2 me-2" (click)="openVerticallyCentered(content)">
+		<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+			<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+		</svg>
+	</button>
+</div>
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Agregar trabajo</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<form class="modal-body" (ngSubmit)="onUpdate()" novalidate #f="ngForm">
+		
+		<div class="form-floating mb-3">
+			<input type="text" class="form-control" id="nombreE" placeholder="Ingrese el nombre de la empresa" name="nombreE" [(ngModel)]="work.nombreE">
+  			<label for="nombreE">Empresa</label>
+		</div>
+		 <div class="form-floating mb-3">
+			<input type="text" class="form-control" id="imagenUrl" placeholder="Image Url" name="imagenUrl" [(ngModel)]="work.imagenUrl">
+  			<label for="imagenUrl">Image URL</label>
+		</div>
+		<div class="form-floating mb-3">
+			<input type="text" class="form-control" placeholder="Describa la tarea o cargo que realizaba" id="descripcionE" style="height: 100px" name="descripcionE" [(ngModel)]="work.descripcionE">
+  			<label for="descripcionE">Descripcion del trabajo</label>
+		</div>
+    
+		<div class="modal-footer">
+			<button type="submit" class="btn btn-success">Actualizar</button>		
+		</div>
+	</form>
+</ng-template> 

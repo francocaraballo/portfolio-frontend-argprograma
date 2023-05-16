@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
@@ -10,8 +9,6 @@ import { AboutComponent } from './components/about/about.component';
 import { WorksDoneComponent } from './components/works-done/works-done.component';
 import { WorkComponent } from './components/work/work.component';
 import { HttpClientModule } from '@angular/common/http' ;
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './services/in-memory-data.service';
 import { DeleteComponent } from './components/delete/delete.component';
 import { EditComponent } from './components/edit/edit.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -27,6 +24,11 @@ import { SkillComponent } from './components/skill/skill.component';
 import { EditSkillComponent } from './components/edit-skill/edit-skill.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProjectsComponent } from './components/projects/projects.component';
+import { interceptorProvider } from './services/interceptor-service';
+import { WorkEditComponent } from './components/work-edit/work-edit.component';
+import { StudiesEditComponent } from './components/studies-edit/studies-edit.component';
+import { ProjectsDoneComponent } from './components/projects-done/projects-done.component';
+import { ProjectEditComponent } from './components/project-edit/project-edit.component';
 
 @NgModule({
   declarations: [
@@ -50,19 +52,22 @@ import { ProjectsComponent } from './components/projects/projects.component';
     EditSkillComponent,
     FooterComponent,
     ProjectsComponent,
+    WorkEditComponent,
+    StudiesEditComponent,
+    ProjectsDoneComponent,
+    ProjectEditComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, {dataEncapsulation: false}
-    ),
     NgbModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    interceptorProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

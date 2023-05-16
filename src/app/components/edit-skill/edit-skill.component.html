@@ -8,21 +8,21 @@
 
 <ng-template #content let-modal>
 	<div class="modal-header">
-		<h4 class="modal-title">Editor de Habilidad</h4>
+		<h4 class="modal-title">Editar Habilidad</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
-	<form class="modal-body">
+	<form class="modal-body" (ngSubmit)="onUpdate()" novalidate #f="ngForm">
 		<!-- Componentes del Edit -->
 		<div class="form-floating mb-3">
-			<input type="text" class="form-control" id="floatingTitle" placeholder="Conocimientos en.." name="description" [(ngModel)]="skillDataIn.description">
-  			<label for="floatingTitle">Habilidad</label>
+			<input type="text" class="form-control" id="titulo" placeholder="Conocimientos en.." name="titulo" [(ngModel)]="skillDataIn.titulo">
+  			<label for="titulo">Habilidad</label>
 		</div>
 		<div class="form-floating mb-3">
-			<input type="text" class="form-control" id="floatingUrlImage" placeholder="ej.: 60" name="value" [(ngModel)]="skillDataIn.value">
-  			<label for="floatingUrlImage">Porcentaje %</label>
+			<input type="number" class="form-control" id="porcentaje" placeholder="ej.: 60" name="porcentaje" [(ngModel)]="skillDataIn.porcentaje">
+  			<label for="porcentaje">Porcentaje %</label>
 		</div>
 		<div class="form-floating mb-3">
-			<select class="form-control" placeholder="Seleccione el color" id="floatingTextarea2" name="type" [(ngModel)]="skillDataIn.type">
+			<select class="form-control" placeholder="Seleccione el color" id="color" name="color" [(ngModel)]="skillDataIn.color">
                 <option value="success">Verde</option>
                 <option value="info">Celeste</option>
                 <option value="warning">Amarillo</option>
@@ -31,7 +31,7 @@
                 <option value="secondary">Gris</option>
                 <option value="dark">Negro</option>
             </select>
-  			<label for="floatingTextarea2">Color</label>
+  			<label for="color">Color</label>
 		</div>
     
 		<div class="modal-footer">
@@ -41,7 +41,6 @@
 					<path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
 				</svg>
 			</button>
-			<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>			
 		</div>
 	</form>
 </ng-template>

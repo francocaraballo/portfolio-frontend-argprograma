@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of, tap } from 'rxjs';
+import { Observable} from 'rxjs';
 import { SkillModel } from '../models/skill.model';
 
 @Injectable({
@@ -8,42 +8,32 @@ import { SkillModel } from '../models/skill.model';
 })
 export class SoftSkillsService {
 
-  private softSkillsUrl = 'api/softSkills';
+  private softSkillsURL = 'http://localhost:8080/softskill/';
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
 
   constructor(private http: HttpClient) { }
 
-  getSkills(): Observable<SkillModel[]> {
-    return this.http.get<SkillModel[]>(this.softSkillsUrl)
-      .pipe(catchError(this.handleError<SkillModel[]>('getSkills',[]))
-      );
+  getSkillsList(): Observable<SkillModel[]> {
+    return this.http.get<SkillModel[]>(this.softSkillsURL + 'list');
   }
 
-  add(skillAdd: SkillModel) {
-    return this.http.post<SkillModel>(this.softSkillsUrl, skillAdd, this.httpOptions).pipe(
-      tap((newSkill: SkillModel) => console.log(newSkill.description)),
-      catchError(this.handleError<SkillModel>('addSkill'))
-    );
+  saveSkill(skill: SkillModel) {
+    return this.http.post<SkillModel>(this.softSkillsURL + 'create', skill);
   }
+
+  updateSkill(id: number, skill: SkillModel): Observable<any>{
+    return this.http.put<any>(this.softSkillsURL + `update/${id}`, skill);
+
+  }
+
 
   removeSkill(id: number): Observable<SkillModel> {
-    const url = `${this.softSkillsUrl}/${id}`;
-
-    return this.http.delete<SkillModel>(url, this.httpOptions).pipe(
-      tap(() => console.log(`deleted soft skill id=${id}`)),
-      catchError(this.handleError<SkillModel>('deleteWork'))
-    );
+    return this.http.delete<SkillModel>(this.softSkillsURL + `delete/${id}`);
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error); 
-      console.log(`${operation} failed: ${error.body.error}`);
-      return of(result as T);
-      };
-    }
+  skillDetail(id: number): Observable<SkillModel>{
+    return this.http.get<SkillModel>(this.softSkillsURL + `detail/${id}`);
+  }
+
 }
 

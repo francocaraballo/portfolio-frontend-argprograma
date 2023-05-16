@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StudyModel } from 'src/app/models/study.model';
-import { StudiesListService } from 'src/app/services/studies-list.service';
+import { StudyService } from 'src/app/services/study.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-studies-done',
@@ -12,33 +14,47 @@ export class StudiesDoneComponent {
   @Input() title: string = "";
   studiesList: StudyModel[] = [];
 
-  constructor(private studiesListService: StudiesListService){}
+  nombreF: string = '';
+  descripcionF: string = '';
+  imagenUrl: string = '';
+
+  logged = false;
+
+  constructor(
+    private studyService: StudyService,
+    private tokenService: TokenService,
+    private modalService: NgbModal){}
 
   ngOnInit(): void {
     this.getStudyList();
   }
 
   getStudyList(): void{
-    this.studiesListService.getStudies().subscribe( studiesList => this.studiesList = studiesList);
+    this.studyService.getStudyList().subscribe( studiesList => this.studiesList = studiesList);
   }
 
-  addStudy(): void{
-    let newId: number = this.studiesList.length + 1;
-    const newWork: StudyModel = {
-      id: newId,
-      title: 'Titulo de estudio',
-      urlImage: 'https://wpdirecto.com/wp-content/uploads/2017/08/alt-de-una-imagen.png',
-      institution: 'Nombre de la institucion'
-    }
-    this.studiesListService.add(newWork as StudyModel)
-    .subscribe((work: StudyModel) => {
-      this.studiesList.push(work);
-    })
+  onCreate(): void {
+    const study = new StudyModel(this.nombreF, this.descripcionF, this.imagenUrl);
+    this.studyService.saveStudy(study).subscribe();
+    this.modalService.dismissAll();
   }
 
-  removeStudyToList(studyToRemove: StudyModel): void{
-    this.studiesListService.remove(studyToRemove.id).subscribe();
+  
+  removeStudy(studyToRemove: StudyModel): void{
+    this.studyService.deleteStudy(studyToRemove.id).subscribe();
     this.getStudyList();
+  }
+  
+  isLogged(){
+    if(this.tokenService.getToken()){
+      this.logged = true;
+    } else {
+      this.logged = false;
+    }
+  }
+
+  openVerticallyCentered(content: any) {
+    this.modalService.open(content, { centered: true });
   }
 
 }

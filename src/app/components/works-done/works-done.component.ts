@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { WorkModel } from 'src/app/models/work.model';
-import { WorkListService } from 'src/app/services/work-list.service';
+import { TokenService } from 'src/app/services/token.service';
+import { WorksService } from 'src/app/services/works.service';
 
 @Component({
   selector: 'app-works-done',
@@ -11,41 +12,72 @@ import { WorkListService } from 'src/app/services/work-list.service';
 export class WorksDoneComponent implements OnInit {
   @Input() title: string = "";
 
+  nombreE: string = '';
+  descripcionE: string = '';
+  imagenUrl: string = '';
+
+
   workList: WorkModel[] = [];
 
+  logged = false;
+
   constructor(
-    private workListService: WorkListService,
+    private worksService: WorksService,
+    private tokenService: TokenService,
     private modalService: NgbModal){}
 
   ngOnInit(): void {
     this.getWorkList();
+    this.isLogged();
   }
+
 
   getWorkList(): void{
-    this.workListService.getWorks().subscribe( workList => this.workList = workList);
+    this.worksService.workList().subscribe( data => this.workList = data)
   }
 
-  addWork(): void{
-    let newId: number = this.workList.length + 1;
-    let newWork: WorkModel = {
-      id: newId,
-      title: 'Titulo del trabajo',
-      urlImage: 'https://wpdirecto.com/wp-content/uploads/2017/08/alt-de-una-imagen.png',
-      description: 'Descripcion'
-    }
-    this.workListService.add(newWork as WorkModel)
-    .subscribe((work: WorkModel) => {
-      this.workList.push(work);
-    })
+
+  removeWork(work: WorkModel): void{
+    this.worksService.deleteWork(work.id!).subscribe();
+    this.getWorkList()
   }
 
-  removeWorkToList(workToRemove: WorkModel): void{
-    this.workListService.remove(workToRemove.id).subscribe();
-    this.getWorkList();
-  }
+  // delete(id?: number){
+  //   if(id != undefined){
+  //     this.worksService.deleteWork(id).subscribe(
+  //       () => {
+  //         this.getWorkList();
+  //       }, () => {
+  //         alert("No se pudo borrar la experiencia");
+  //       }
+  //     )
+  //   }
+  // }
 
   openVerticallyCentered(content: any) {
 		this.modalService.open(content, { centered: true });
-    this.addWork();
 	}
+
+  onCreate(): void {
+    const work = new WorkModel(this.nombreE, this.descripcionE, this.imagenUrl);
+    this.worksService.saveWork(work)
+    .subscribe(
+      {
+        next: resp => {
+          console.log(resp);
+        },
+        error: err => {
+          console.log(err);
+        }
+      })
+    this.modalService.dismissAll();
+  }
+
+  isLogged(){
+    if(this.tokenService.getToken()){
+      this.logged = true;
+    } else {
+      this.logged = false;
+    }
+  }
 }

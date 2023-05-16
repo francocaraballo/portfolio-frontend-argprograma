@@ -1,13 +1,15 @@
 <div class="work-container row">
-    <div class="d-flex flex-wrap">
-        <img [src]=workData.urlImage class="img-work img-fluid" alt="Image work" width="200px">
+    <div class="d-flex flex-wrap col">
+        <img [src]="workData.imagenUrl" class="img-work img-fluid" alt="Image work" width="200px">
         <div class="text-work d-flex flex-column justify-content-center ">
-            <h5>{{ workData.title }}</h5>
-            <p class="work-description">{{ workData.description }}</p>
+            <h5>{{ workData.nombreE }}</h5>
+            <p class="work-description">{{ workData.descripcionE }}</p>
         </div>
         <div class="edit-container d-flex justify-content-center">
-            <app-edit [workDataIn]="workData"></app-edit>
-            <app-delete (click)="deleteWork(workData)"></app-delete>
         </div>
+    </div>
+    <div class="container-edit-delete col d-flex flex-column align-items-end justify-content-center">
+        <app-work-edit *ngIf="logged" [work]="workData"></app-work-edit>
+        <app-delete *ngIf="logged" (click)="deleteWork(workData)"></app-delete>
     </div>
 </div>

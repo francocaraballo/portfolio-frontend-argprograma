@@ -10,7 +10,7 @@ import { StudyModel } from '../models/study.model';
 })
 export class StudiesListService {
 
-  private studiesUrl = 'api/studies';
+  private studiesUrl = '';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -24,12 +24,12 @@ export class StudiesListService {
       );
     }
     
-  add(studyAdd: StudyModel){
-    return this.http.post<StudyModel>(this.studiesUrl, studyAdd, this.httpOptions).pipe(
-      tap((newStudy: StudyModel) => console.log(newStudy.title)),
-      catchError(this.handleError<StudyModel>('addStudy'))
-      );
-    }
+  // add(studyAdd: StudyModel){
+  //   return this.http.post<StudyModel>(this.studiesUrl, studyAdd, this.httpOptions).pipe(
+  //     tap((newStudy: StudyModel) => console.log(newStudy.title)),
+  //     catchError(this.handleError<StudyModel>('addStudy'))
+  //     );
+  //   }
 
     remove(id: number): Observable<StudyModel>{
       const url = `${this.studiesUrl}/${id}`;
